@@ -1,12 +1,12 @@
 import random
+from Node import Node
 
 
 class Agent:
     node = None
     chromaticNumber = 1
-    def __init__(self, node, chromatic_number):
-        self.node = node
-        self.chromaticNumber = chromatic_number
+    def __init__(self):
+        self.node =  Node()
 
     def change_state(self):
         nodeNeighbours = self.node.getNeighbours()

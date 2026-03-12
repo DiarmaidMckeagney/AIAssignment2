@@ -1,14 +1,16 @@
-from random import randint
-
 class Node:
     colour = None
-    neighbours = []
+    neighbours = None
 
-    def __init__(self, chromaticNum):
-        self.colour = randint(1, chromaticNum)
+    def __init__(self):
+        self.colour = 1
+        self.neighbours = []
 
     def addNeighbour(self, neighbour):
         self.neighbours.append(neighbour)
+
+    def addNeighbours(self, neighbours):
+        self.neighbours += neighbours
 
     def getNeighbours(self):
         return self.neighbours
