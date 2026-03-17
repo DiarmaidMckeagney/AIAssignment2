@@ -1,9 +1,9 @@
 from enum import Enum
-from Node import Node
 from Agent import Agent
 
 import networkx as nx
 import matplotlib.pyplot as plt
+import Util
 
 class Colour(Enum):
     Red = 1
@@ -24,25 +24,24 @@ class Colour(Enum):
 
 def initGraph(numNodes, edgeProbability):
     graph = nx.erdos_renyi_graph(numNodes, edgeProbability, seed=42)
-    agents = []
     for i in range(numNodes):
         agent = Agent()
-        agents.append(agent)
-    
+        Util.agentList.append(agent)
 
-    return graph, agents
+
+    return graph
 
 if __name__ == "__main__":
-    graph, agents = initGraph(10, 0.3)
+    graph = initGraph(10, 0.3)
 
     for i in graph.adjacency():
         nodeIndex = i[0]
         neighbours = i[1]
 
-        agents[nodeIndex].node.addNeighbours(list(neighbours.keys()))
+        Util.agentList[nodeIndex].node.addNeighbours(list(neighbours.keys()))
 
-    for agent in agents:
+    for agent in Util.agentList:
         print(f"Node colour: {Colour.fromInt(agent.node.getColour())}, Neighbours: {agent.node.getNeighbours()}")
-        
+
     nx.draw(graph, with_labels=True)
     plt.show()
