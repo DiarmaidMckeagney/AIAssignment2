@@ -20,16 +20,17 @@ class Agent:
             print(f"Neighbour {modelNeighbours.index(agent)} State = {agent.node.getColour()}")
             if self.node.getColour() == agent.node.getColour():
                 numConflicts += 1
-                conflictColours.append(self.node.getColour())
+                conflictColours.append(agent.node.getColour())
             else:
-                conflictColours.append(self.node.getColour())
+                conflictColours.append(agent.node.getColour())
 
         if numConflicts != 0:
             gapFound = False
-            for i, colour in enumerate(conflictColours):
-                if colour != i+1:
-                    self.node.setColour(i + 1)
+            for i, colour in enumerate(Util.Colour):
+                if colour != self.node.getColour() and colour.value not in conflictColours:
+                    self.node.setColour(colour.value)
                     gapFound = True
+                    break
             if not gapFound:
                 self.node.setColour(max(conflictColours) + 1)
             print("state Changed to:", self.node.getColour())

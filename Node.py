@@ -1,9 +1,13 @@
+from random import Random
+
+Random().seed(2)
+
 class Node:
     colour = None
     neighbours = None
 
     def __init__(self):
-        self.colour = 1
+        self.colour = Random().randint(a=0, b=1) + 1
         self.neighbours = []
 
     def addNeighbour(self, neighbour):

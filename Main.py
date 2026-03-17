@@ -25,7 +25,7 @@ if __name__ == "__main__":
     initNeighbours(graph)
 
     # Main loop
-    for i in range(10) :
+    for i in range(10):
         for agent in Util.agentList:
             agent.change_state()
 
