@@ -11,22 +11,26 @@ def initGraph(numNodes, edgeProbability):
         agent = Agent()
         Util.agentList.append(agent)
 
-
     return graph
 
-if __name__ == "__main__":
-    graph = initGraph(10, 0.3)
-
+def initNeighbours(graph):
     for i in graph.adjacency():
         nodeIndex = i[0]
         neighbours = i[1]
 
         Util.agentList[nodeIndex].node.addNeighbours(list(neighbours.keys()))
 
+if __name__ == "__main__":
+    graph = initGraph(10, 0.3)
+    initNeighbours(graph)
+
+    # Main loop
     for i in range(10) :
         for agent in Util.agentList:
             agent.change_state()
 
+
+    # Print final states and visualise graph
     for agent in Util.agentList:
         print(f"Node {Util.agentList.index(agent)} colour: {Util.Colour.fromInt(agent.node.getColour())}, in final state")
 
