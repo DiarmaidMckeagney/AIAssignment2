@@ -16,9 +16,9 @@ class Agent:
 
         numConflicts = 0
         conflictColours = []
-        for i,node in enumerate(modelNeighbours):
-            print(f"Neighbour {i} State = {self.node.getColour()}")
-            if self.node.getColour() == self.node.getColour():
+        for agent in modelNeighbours:
+            print(f"Neighbour {modelNeighbours.index(agent)} State = {agent.node.getColour()}")
+            if self.node.getColour() == agent.node.getColour():
                 numConflicts += 1
                 conflictColours.append(self.node.getColour())
             else:

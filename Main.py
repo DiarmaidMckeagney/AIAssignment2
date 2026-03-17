@@ -37,5 +37,9 @@ if __name__ == "__main__":
     pos = nx.circular_layout(graph)
     colour_map = Util.colour_Graph_Nodes(Util.agentList, graph)
 
+    chromaticNum = nx.greedy_color(graph, strategy="largest_first")
+    chromaticNum = max(chromaticNum.values()) + 1
+    print(f"Chromatic number of the graph: {chromaticNum}")
+
     nx.draw(graph, with_labels=True, node_color=colour_map, pos=pos)
     plt.show()
