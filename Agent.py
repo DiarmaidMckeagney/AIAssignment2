@@ -17,12 +17,12 @@ class Agent:
         numConflicts = 0
         conflictColours = []
         for i,node in enumerate(modelNeighbours):
-            print(f"Neighbour {i} State = {node.getColour()}")
-            if node.getColour() == self.node.getColour():
+            print(f"Neighbour {i} State = {self.node.getColour()}")
+            if self.node.getColour() == self.node.getColour():
                 numConflicts += 1
-                conflictColours.append(node.getColour())
+                conflictColours.append(self.node.getColour())
             else:
-                conflictColours.append(node.getColour())
+                conflictColours.append(self.node.getColour())
 
         if numConflicts != 0:
             gapFound = False
