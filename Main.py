@@ -1,23 +1,21 @@
-
 from matplotlib import pyplot as plt
-
 from Agent import Agent
-
 import networkx as nx
 import Util
 
 
-def initGraph(numNodes, edgeProbability):
+def initGraph(numNodes, edgeProbability, isQ1):
     graph = nx.erdos_renyi_graph(numNodes, edgeProbability, seed=42)
     for i in range(numNodes):
         agent = Agent()
-        Util.agentList.append(agent)
-
-
+        if isQ1:
+            Util.agentList_question1.append(agent)
+        else:
+            Util.agentList_question2.append(agent)
     return graph
 
 def question1Flow():
-    graph = initGraph(10, 0.3)
+    graph = initGraph(10, 0.3,True)
 
     for i in graph.adjacency():
         nodeIndex = i[0]
@@ -42,7 +40,7 @@ def question1Flow():
     plt.show()
 
 def question2Flow():
-    graph2 = initGraph(10, 0.3)
+    graph2 = initGraph(10, 0.3,False)
 
     for i in graph2.adjacency():
         nodeIndex = i[0]
@@ -51,7 +49,7 @@ def question2Flow():
         Util.agentList_question2[nodeIndex].node.addNeighbours(list(neighbours.keys()))
     for agent in Util.agentList_question2:
         print(f"Node colour: {Util.Colour.fromInt(agent.node.getColour())}, Neighbours: {agent.node.getNeighbours()}")
-    for i in range(150):
+    for i in range(20):
         print(f"\nGENERATION {i}\n")
         for agent in Util.agentList_question2:
             agent.change_state()
@@ -67,4 +65,4 @@ def question2Flow():
     plt.show()
 if __name__ == "__main__":
     question1Flow()
-    question2Flow()
+    #question2Flow()

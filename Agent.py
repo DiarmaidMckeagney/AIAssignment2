@@ -13,7 +13,7 @@ class Agent:
         modeNeighboursNum = self.node.getNeighbours()
         modelNeighbours = []
         for n in modeNeighboursNum:
-            modelNeighbours.append(Util.agentList[n])
+            modelNeighbours.append(Util.agentList_question1[n])
 
         numConflicts = 0
         neighbourColours = []
@@ -31,7 +31,8 @@ class Agent:
                         self.nextGenColour = colour.value
                     break
 
-
+    def change_state_q2(self):
+        print("q2")
 
     def move_to_next_gen(self):
         if self.node.getColour() == self.nextGenColour:
