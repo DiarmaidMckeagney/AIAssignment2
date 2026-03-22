@@ -31,3 +31,36 @@ def colourAndDrawGraph(graph, agentList):
     # Draw the graph with labels and the specified node colours, and then display it
     nx.draw(graph, with_labels=True, node_color=colour_map, pos=pos)
     plt.show()
+
+def countConflicts(agentList):
+    totalConflicts = 0
+    # Iterate through each agent and count the number of conflicts (neighbours with the same colour) for each agent, and sum them up to get the total number of conflicts in the graph
+    for agent in agentList:
+        modeNeighboursNum = agent.node.getNeighbours()
+        modelNeighbours = []
+        for n in modeNeighboursNum:
+            modelNeighbours.append(agentList[n])
+        for i,neighbour in enumerate(modelNeighbours):
+            if agent.node.getColour() == neighbour.node.getColour():
+                totalConflicts += 1
+    return totalConflicts
+
+def drawConflictGraphs(file):
+    file = open(file, "r")
+    generations = []
+    conflicts = []
+    # Read the output file for question 1 and extract the generation numbers and total conflicts to
+    for line in file:
+        if line.startswith("Generation"):
+            continue
+        generation, conflict = line.strip().split(",")
+        generations.append(int(generation))
+        conflicts.append(int(conflict))
+    file.close()
+    # Plot the graph of total conflicts over generations
+    plt.plot(generations, conflicts)
+    plt.xlabel("Generation")
+    plt.ylabel("Total Conflicts")
+    plt.title("Number of Conflicts Over Generations")
+    plt.legend()
+    plt.show()
