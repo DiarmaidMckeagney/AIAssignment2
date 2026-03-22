@@ -11,11 +11,9 @@ def question2Flow():
     file = open("outputs/question2_output.txt", "w")
     file.write(f"Generation, Total number of conflicts\n")
     # Main loop
-    for i in range(180):
+    for i in range(350):
         # Limiting the number of available colours based on generation
-        numColoursAvailable = i // 20
-        if numColoursAvailable < 2:
-            numColoursAvailable = 2
+        numColoursAvailable = (i // 50) + 2
 
         # Decide the next state for each agent based on the current state of its neighbours and the number of available colours
         for agent in agentList_question2:
