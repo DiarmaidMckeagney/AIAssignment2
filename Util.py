@@ -1,20 +1,24 @@
-from enum import Enum
+from matplotlib import pyplot as plt
+from Agent import Agent
+import networkx as nx
+from Colour import Colour
 
-agentList_question1 = []
-agentList_question2 = []
+def initGraph(numNodes, edgeProbability, agentList):
+    graph = nx.erdos_renyi_graph(numNodes, edgeProbability, seed=42)
+    for i in range(numNodes):
+        agent = Agent()
+        agentList.append(agent)
+    return graph
 
-class Colour(Enum):
-    red = 1
-    blue = 2
-    green = 3
-    purple = 4
-    pink = 5
-    orange = 6
-    black = 7
-    white = 8
+def initNeighbours(graph, agentList):
+    for i in graph.adjacency():
+        nodeIndex = i[0]
+        neighbours = i[1]
+        agentList[nodeIndex].node.addNeighbours(list(neighbours.keys()))
 
-    def fromInt(value):
-        for colour in Colour:
-            if colour.value == value:
-                return str(colour.name)
-        raise ValueError(f"No colour with value {value}")
+def colourAndDrawGraph(graph, agentList):
+    colour_map = []
+    for agent in agentList:
+        colour_map.append(Colour.fromInt(agent.node.getColour()))
+    nx.draw(graph, with_labels=True, node_color=colour_map)
+    plt.show()

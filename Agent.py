@@ -1,5 +1,5 @@
 from Node import Node
-import Util
+from Colour import Colour
 import random
 
 class Agent:
@@ -8,12 +8,12 @@ class Agent:
     def __init__(self):
         self.node = Node()
 
-    def change_state(self):
+    def change_state(self, agentList):
         print("state starts as:", self.node.getColour())
         modeNeighboursNum = self.node.getNeighbours()
         modelNeighbours = []
         for n in modeNeighboursNum:
-            modelNeighbours.append(Util.agentList_question1[n])
+            modelNeighbours.append(agentList[n])
 
         numConflicts = 0
         neighbourColours = []
@@ -25,13 +25,13 @@ class Agent:
 
         print(neighbourColours)
         if numConflicts != 0:
-            for i, colour in enumerate(Util.Colour):
+            for i, colour in enumerate(Colour):
                 if colour.value != self.node.getColour() and colour.value not in neighbourColours:
                     if random.random() < 0.75:
                         self.nextGenColour = colour.value
                     break
 
-    def change_state_q2(self):
+    def change_state_q2(self, agentList):
         print("q2")
 
     def move_to_next_gen(self):
