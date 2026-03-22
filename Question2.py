@@ -8,7 +8,7 @@ def question2Flow():
     # Initialize the neighbours for each agent based on the graph structure
     Util.initNeighbours(graph2, agentList_question2)
 
-    file = open("question2_output.txt", "w")
+    file = open("outputs/question2_output.txt", "w")
     file.write(f"Generation, Total number of conflicts\n")
     # Main loop
     for i in range(180):
@@ -35,4 +35,4 @@ def question2Flow():
 # Call main to run the flow for question two
 if __name__ == "__main__":
     question2Flow()
-    Util.drawConflictGraphs("question2_output.txt")
+    Util.drawConflictGraphs("outputs/question2_output.txt")

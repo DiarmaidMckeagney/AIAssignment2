@@ -10,7 +10,7 @@ def question1Flow():
     Util.initNeighbours(graph, agentList_question1)
 
 
-    file = open("question1_output.txt", "w")
+    file = open("outputs/question1_output.txt", "w")
     file.write(f"Generation, Total number of conflicts\n")
     # Main loop
     for i in range(20):
@@ -32,4 +32,4 @@ def question1Flow():
 # Call main to run the flow for question one
 if __name__ == "__main__":
     question1Flow()
-    Util.drawConflictGraphs("question1_output.txt")
+    Util.drawConflictGraphs("outputs/question1_output.txt")
