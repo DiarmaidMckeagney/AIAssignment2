@@ -2,7 +2,7 @@ import Util
 
 def question1Flow():
     agentList_question1 = []
-    graph = Util.initGraph(10, 0.3,agentList_question1)
+    graph = Util.initGraph(40, 0.3,agentList_question1)
     Util.initNeighbours(graph, agentList_question1)
 
     for i in range(150):

@@ -20,5 +20,6 @@ def colourAndDrawGraph(graph, agentList):
     colour_map = []
     for agent in agentList:
         colour_map.append(Colour.fromInt(agent.node.getColour()))
-    nx.draw(graph, with_labels=True, node_color=colour_map)
+    pos = nx.circular_layout(graph)
+    nx.draw(graph, with_labels=True, node_color=colour_map, pos=pos)
     plt.show()

@@ -1,6 +1,5 @@
 import random
 
-
 class Node:
     colour = None
     neighbours = None
